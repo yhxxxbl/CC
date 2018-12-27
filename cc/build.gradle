@@ -62,7 +62,7 @@ ext {
     allLicenses = ["Apache-2.0"]
 }
 
-apply from: rootProject.file('bintray.gradle')
+//apply from: rootProject.file('bintray.gradle')
 
 apply plugin: 'maven'
 uploadArchives {

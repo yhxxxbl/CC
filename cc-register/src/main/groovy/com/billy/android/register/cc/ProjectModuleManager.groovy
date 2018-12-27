@@ -134,8 +134,8 @@ class ProjectModuleManager {
         def curModuleIsBuildingApk = taskIsAssemble && (mainModuleName == null && isMainApp(project) || mainModuleName == project.name)
         project.ext.addComponent = { dependencyName, realDependency = null ->
             //不是在为本app module打apk包，不添加对组件的依赖
-            if (!curModuleIsBuildingApk)
-                return
+            //if (!curModuleIsBuildingApk)
+            //   return
             def excludeModule = 'true' == localProperties.getProperty(dependencyName)
             if (!excludeModule) {
                 def componentProject = project.rootProject.subprojects.find { it.name == dependencyName }

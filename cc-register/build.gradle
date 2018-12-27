@@ -14,19 +14,19 @@ dependencies {
 }
 
 ext {
-    bintrayRepo = 'android'
+    bintrayRepo = 'maven'
     bintrayName = 'cc-register'
 
-    publishedGroupId = 'com.billy.android'
+    publishedGroupId = 'com.fxiaoke'
     libraryName = 'CcRegister'
     artifact = 'cc-register'
 
     libraryDescription = 'android component caller'
 
-    siteUrl = 'https://github.com/luckybilly/CC'
-    gitUrl = 'https://github.com/luckybilly/CC.git'
+    siteUrl = 'https://github.com/fsxiaoke/CC'
+    gitUrl = 'https://github.com/fsxiaoke/CC.git'
 
-    libraryVersion = '1.0.6'
+    libraryVersion = '1.0.0'
 
     developerId = 'billy'
     developerName = 'billy'

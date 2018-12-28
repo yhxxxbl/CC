@@ -12,16 +12,15 @@ import java.util.regex.Pattern
  */
 class ProjectModuleManager {
     static final String PLUGIN_NAME = RegisterPlugin.PLUGIN_NAME
-    
+
     //为区别于组件单独以app方式运行的task，将组件module打包成aar时，在local.properties文件中添加 assemble_aar_for_cc_component=true
     static final String ASSEMBLE_AAR_FOR_CC_COMPONENT = "assemble_aar_for_cc_component"
     //组件单独以app方式运行时使用的测试代码所在目录(manifest/java/assets/res等),这个目录下的文件不会打包进主app
     static final String DEBUG_DIR = "src/main/debug/"
     //主app，一直以application方式编译
-    static final String MODULE_MAIN_APP = "mainApp" 
+    static final String MODULE_MAIN_APP = "mainApp"
     //apply了cc-settings-2.gradle的module，但不是组件，而是一直作为library被其它组件依赖
-    static final String MODULE_ALWAYS_LIBRARY = "alwaysLib" 
-    
+    static final String MODULE_ALWAYS_LIBRARY = "alwaysLib"
 
     static String mainModuleName
     static boolean taskIsAssemble
@@ -88,6 +87,7 @@ class ProjectModuleManager {
 
     //需要集成打包相关的task
     static final String TASK_TYPES = ".*((((ASSEMBLE)|(BUILD)|(INSTALL)|((BUILD)?TINKER)|(RESGUARD)).*)|(ASR)|(ASD))"
+
     static void initByTask(Project project) {
         def taskNames = project.gradle.startParameter.taskNames
         def allModuleBuildApkPattern = Pattern.compile(TASK_TYPES)
@@ -113,7 +113,12 @@ class ProjectModuleManager {
         return project.ext.has(MODULE_MAIN_APP) && project.ext.mainApp
     }
     static boolean isAlwaysLib(Project project) {
-        return project.ext.has(MODULE_ALWAYS_LIBRARY) && project.ext.alwaysLib
+        if (project.ext.runAsApp) {
+            println "CC >>> set module: ${project.name} NOT run as lib >>> ProjectModuleManager.Groovy/line#115"
+            return false
+        }
+        else
+            return project.ext.has(MODULE_ALWAYS_LIBRARY) && project.ext.alwaysLib
     }
     //判断当前设置的环境是否为组件打aar包（比如将组件打包上传maven库）
     static boolean isBuildingAar(Properties localProperties) {
@@ -134,8 +139,8 @@ class ProjectModuleManager {
         def curModuleIsBuildingApk = taskIsAssemble && (mainModuleName == null && isMainApp(project) || mainModuleName == project.name)
         project.ext.addComponent = { dependencyName, realDependency = null ->
             //不是在为本app module打apk包，不添加对组件的依赖
-            if (!curModuleIsBuildingApk)
-                return
+            //if (!curModuleIsBuildingApk)
+            //   return
             def excludeModule = 'true' == localProperties.getProperty(dependencyName)
             if (!excludeModule) {
                 def componentProject = project.rootProject.subprojects.find { it.name == dependencyName }

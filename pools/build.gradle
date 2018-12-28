@@ -15,10 +15,10 @@ sourceCompatibility = 1.7
 targetCompatibility = 1.7
 
 ext {
-    bintrayRepo = 'android'
+    bintrayRepo = 'maven'
     bintrayName = 'objpool'
 
-    publishedGroupId = 'com.billy.android'
+    publishedGroupId = 'com.fxiaoke'
     libraryName = 'ObjPool'
     artifact = 'pools'
 
@@ -27,7 +27,7 @@ ext {
     siteUrl = 'https://github.com/luckybilly/CC'
     gitUrl = 'git@github.com:luckybilly/CC.git'
 
-    libraryVersion = '0.0.5' //要发布到 jcenter 上的版本号
+    libraryVersion = '1.0.0' //要发布到 jcenter 上的版本号
 
     developerId = 'billy'
     developerName = 'billy'
@@ -38,4 +38,4 @@ ext {
     allLicenses = ["Apache-2.0"]
 }
 
-apply from: rootProject.file('bintray.gradle')
+//apply from: rootProject.file('bintray.gradle')

@@ -39,19 +39,19 @@ sourceCompatibility = 1.7
 targetCompatibility = 1.7
 
 ext {
-    bintrayRepo = 'android'
-    bintrayName = 'cc'
+    bintrayRepo = 'maven'
+    bintrayName = 'cc-register'
 
-    publishedGroupId = 'com.billy.android'
-    libraryName = 'CC'
+    publishedGroupId = 'com.fxiaoke'
+    libraryName = 'cc-Register'
     artifact = 'cc'
 
     libraryDescription = 'android component caller'
 
-    siteUrl = 'https://github.com/luckybilly/CC'
-    gitUrl = 'git@github.com:luckybilly/CC.git'
+    siteUrl = 'https://github.com/fsxiaoke/CC'
+    gitUrl = 'https://github.com/fsxiaoke/CC.git'
 
-    libraryVersion = '2.1.1'
+    libraryVersion = '1.0.0'
 
     developerId = 'billy'
     developerName = 'billy'
@@ -62,7 +62,7 @@ ext {
     allLicenses = ["Apache-2.0"]
 }
 
-apply from: rootProject.file('bintray.gradle')
+//apply from: rootProject.file('bintray.gradle')
 
 apply plugin: 'maven'
 uploadArchives {
